@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import auth from '../hoc/auth';
 import axios from 'axios'; 
 
 
@@ -14,4 +15,4 @@ class MovieQuote extends Component {
 }
 
 
-export default MovieQuote;
+export default auth(MovieQuote);

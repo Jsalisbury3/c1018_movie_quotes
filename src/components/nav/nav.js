@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
+import { connect } from 'react-redux';
 import bookBirdLogo from './images/logo-transparent.png'
 import {Link} from 'react-router-dom';
+import {signOut} from '../../actions';
 import './nav.scss';
 import SideNav from './side_nav';
 
@@ -52,11 +54,12 @@ class Nav extends Component {
 
     handleSignOut = () =>{
         console.log('sign out lizard boih');
+        this.props.signOut();
     }
 
     renderLinks(){
         const { authLinks, commonLinks, noAuthLinks} = this.state;
-        const auth = false;
+        const {auth} = this.props;
 
         let links = [...commonLinks];
 
@@ -94,5 +97,12 @@ class Nav extends Component {
     }
 }
 
+function mapStateToProps(state){
+    return {
+        auth: state.user.auth
+    }
+}
 
-export default Nav;
+export default connect(mapStateToProps, {
+    signOut: signOut
+})(Nav);
