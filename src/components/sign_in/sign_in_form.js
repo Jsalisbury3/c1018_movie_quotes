@@ -4,7 +4,7 @@ import {Field, reduxForm} from 'redux-form';
 import {signIn} from '../../actions'
 
 let SignIn = props =>{
-    return <button onCLick = {props.signIn} className="btn black">Sign In</button>;
+    return <button onClick = {props.signIn} className="btn black">Sign In</button>;
 }
 
 SignIn = connect(null, {
