@@ -4,10 +4,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore} from 'redux';
 import rootReducer from './reducers';
-
+import think from './middleware/think';
 import App from './components/app';
+import types from './actions/types';
 
-const store = createStore(rootReducer);
+
+const store = createStore(rootReducer, applyMiddleware(think));
+
+if(localStorage.getItem('token')){
+    store.dispatch({
+        type: types.SIGN_IN
+    })
+}
 
 ReactDOM.render(
     <Provider store ={store}>
